@@ -14,3 +14,5 @@ git rm  file    删除文件 （执行后  暂存区 已经不存在 文件 file
 
 git remote add origin https://github.com/adu8419/git_learn.git   把本地建立的git项目    关联远程仓库
 git push -u origin master   向远程仓库推代码  第一次要加 -u参数  加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+
