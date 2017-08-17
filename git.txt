@@ -1,0 +1,16 @@
+git  add  file
+git  commit -m ''
+git log
+git log --pretty=oneline
+git reflog  查看未来的版本
+git reset --hard  'commit_id' 
+git reset  --hard  HEAD^  git回退上一个版本  （HEAD 表示当前版本  HEAD^ 表示最近的上一个版本）
+git diff
+git diff HEAD -- file 查看当前版本某个文件 的改变 
+git checkout -- file    就是让这个文件回到最近一次git commit或git add时的状态 （命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令）
+git rm  file    删除文件 （执行后  暂存区 已经不存在 文件 file 了， 如果后悔要找回文件 参考前面的  版本回退）
+
+
+
+git remote add origin https://github.com/adu8419/git_learn.git   把本地建立的git项目    关联远程仓库
+git push -u origin master   向远程仓库推代码  第一次要加 -u参数  加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
