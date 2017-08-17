@@ -27,3 +27,5 @@ git push -u origin master   向远程仓库推代码  第一次要加 -u参数  
 合并某分支到当前分支：git merge <name>
 
 删除分支：git branch -d <name>
+
+ git merge --no-ff -m "merged bug fix 101" issue-101  会有分支信息的合并 --no-ff
