@@ -20,6 +20,9 @@ git push -u origin master   向远程仓库推代码  第一次要加 -u参数  
 
 创建分支：git branch <name>
 
+在本地创建和远程分支对应的分支 git checkout -b dev origin/dev  本地和远程分支的名称最好一致
+
+
 切换分支：git checkout <name>
 
 创建+切换分支：git checkout -b <name>
@@ -28,7 +31,56 @@ git push -u origin master   向远程仓库推代码  第一次要加 -u参数  
 
 删除分支：git branch -d <name>
 
- git merge --no-ff -m "merged bug fix 101" issue-101  会有分支信息的合并 --no-ff
+git merge --no-ff -m "merged bug fix 101" issue-101  会有分支信息的合并 --no-ff
  
  
- 当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
+git stash 当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
+ 
+git branch -D <name>   如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除。
+
+git branch --set-upstream branch-name origin/branch-name  如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+
+
+查看远程库信息，使用git remote -v
+
+
+
+$ git tag -a v0.1 -m "version 0.1 released" 3628164  还可以创建带有说明的标签，用-a指定标签名，-m指定说明文字：
+
+命令git tag <name>用于新建一个标签，默认为HEAD，也可以指定一个commit id；
+
+git tag -a <tagname> -m "blablabla..."可以指定标签信息；
+
+git tag -s <tagname> -m "blablabla..."可以用PGP签名标签；
+
+命令git tag可以查看所有标签。
+
+如果要推送某个标签到远程，使用命令git push origin <tagname>： ( git push origin v1.0)
+
+
+git push origin --tags   一次性推送全部尚未推送到远程的本地标签：
+
+
+如果标签已经推送到远程，要删除远程标签就麻烦一点，先从本地删除：
+
+$ git tag -d v0.9
+Deleted tag 'v0.9' (was 6224937)
+然后，从远程删除。删除命令也是push，但是格式如下：
+
+$ git push origin :refs/tags/v0.9
+To git@github.com:michaelliao/learngit.git
+ - [deleted]         v0.9
+要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
+
+命令git push origin <tagname>可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d <tagname>可以删除一个本地标签；
+
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
+
+
+忽略某些文件时，需要编写.gitignore；
+
+.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理！
